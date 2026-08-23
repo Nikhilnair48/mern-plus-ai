@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Async and await</title>
+  <link rel="stylesheet" href="./styles.css">
+</head>
+<body>
+<main>
+  <h1>Support ticket: async and await</h1>
+  <p>Consume the same Promise through await, try, and catch.</p>
+  <p id="ticket-status" class="status">Ticket not loaded</p>
+  <div class="actions">
+    <button id="load-ticket" type="button">Load ticket</button>
+    <button id="fail-ticket" type="button">Simulate failure</button>
+  </div>
+  <pre id="ticket-output">No result yet</pre>
+</main>
+  <script type="module" src="./52-58-async-await.js"></script>
+</body>
+</html>

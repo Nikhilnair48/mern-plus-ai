@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset='UTF-8'>
+    <meta name='viewport' content='width=device-width,initial-scale=1'>
+    <title>17-dropdown-layering.html</title>
+</head>
+
+<body>
+    <style>
+        .navigation {
+            position: relative;
+            height: 40px;
+        }
+
+        .dropdown {
+            position: absolute;
+            top: 30px;
+            left: 0;
+            width: 160px;
+            padding: 12px;
+            background-color: white;
+            border: 1px solid gray;
+            z-index: 1;
+        }
+
+        .banner {
+            position: relative;
+            padding: 24px;
+            background-color: lightblue;
+            z-index: 2;
+        }
+    </style>
+    <nav class="navigation">
+        <button>Courses</button>
+        <div class="dropdown">
+            <a href="#">Frontend</a>
+            <a href="#">Backend</a>
+        </div>
+    </nav>
+    <section class="banner">
+        New courses available
+    </section>
+
+</body>
+
+</html>

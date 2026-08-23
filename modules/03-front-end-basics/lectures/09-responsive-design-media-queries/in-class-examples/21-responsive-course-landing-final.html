@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Responsive Course Landing Page - Final</title>
+    <style>
+        /* CSS shown in Slide 47 */
+        body {
+            margin: 0;
+            font-family: Arial, sans-serif;
+        }
+
+        .site-header,
+        .page-content,
+        .site-footer {
+            width: 90%;
+            margin: 0 auto;
+        }
+
+        .site-header {
+            padding: 1rem 0;
+        }
+
+        .course-nav a {
+            display: block;
+            margin-bottom: 0.75rem;
+        }
+
+        .course-hero {
+            min-height: 50vh;
+            padding: 2rem 1rem;
+            background-color: #eaf2ff;
+        }
+
+        .course-hero h2 {
+            font-size: 2rem;
+        }
+
+        .course-section {
+            padding: 1.5rem 0;
+        }
+
+        .site-footer {
+            padding: 1rem 0;
+        }
+
+        /* Milestone 1 CSS shown in Slide 48 */
+        .site-header,
+        .page-content,
+        .site-footer {
+            width: 90%;
+            max-width: 900px;
+            margin: 0 auto;
+        }
+
+        /* Milestone 2 CSS shown in Slide 49 */
+        .course-hero {
+            min-height: 50vh;
+            padding: 2rem 1rem;
+        }
+
+        .course-hero h2 {
+            font-size: 2rem;
+        }
+
+        /* Milestone 3 CSS shown in Slide 50 */
+        @media (min-width: 768px) {
+            .course-nav a {
+                display: inline;
+                margin-right: 1rem;
+                margin-bottom: 0;
+            }
+        }
+
+        /* Milestone 4 CSS shown in Slide 51 */
+        @media (min-width: 768px) {
+            .course-hero {
+                padding: 4rem 2rem;
+            }
+
+            .course-hero h2 {
+                font-size: 3rem;
+            }
+
+            .course-section {
+                padding: 2.5rem 0;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <header class="site-header">
+        <h1>Full Stack Engineering</h1>
+        <nav class="course-nav">
+            <a href="#about">About</a>
+            <a href="#outcomes">Outcomes</a>
+            <a href="#enrol">Enroll</a>
+        </nav>
+    </header>
+
+    <main class="page-content">
+        <section class="course-hero">
+            <h2>Build Modern Web Applications</h2>
+            <p>Learn HTML, CSS, JavaScript, React, Node.js, and databases.</p>
+            <a href="#enrol">View Course Details</a>
+        </section>
+
+        <section id="about" class="course-section">
+            <h2>About the Course</h2>
+            <p>Develop practical full-stack engineering skills through guided examples and hands-on projects.</p>
+        </section>
+
+        <section id="outcomes" class="course-section">
+            <h2>Learning Outcomes</h2>
+            <p>Build frontend interfaces and backend APIs.</p>
+            <p>Work with relational and non-relational databases.</p>
+            <p>Integrate AI features into full-stack applications.</p>
+        </section>
+    </main>
+
+    <footer class="site-footer">
+        <p>Full Stack Engineering Course</p>
+    </footer>
+
+</body>
+
+</html>

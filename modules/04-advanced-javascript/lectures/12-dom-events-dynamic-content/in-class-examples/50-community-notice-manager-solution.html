@@ -1,0 +1,284 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Community notice manager - solution</title>
+  <style>
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      padding: 32px 16px;
+      font-family: Arial, sans-serif;
+      line-height: 1.5;
+      color: #111827;
+      background-color: #f3f4f6;
+    }
+
+    main {
+      width: 100%;
+      max-width: 760px;
+      margin: 0 auto;
+      padding: 28px;
+      background-color: #ffffff;
+      border: 1px solid #cbd5e1;
+      border-radius: 12px;
+      box-shadow: 0 8px 24px rgba(15, 23, 42, 0.08);
+    }
+
+    h1 {
+      margin: 0 0 8px;
+      font-size: 30px;
+      line-height: 1.2;
+    }
+
+    h2 {
+      margin: 26px 0 10px;
+      font-size: 20px;
+    }
+
+    h3 {
+      margin: 0 0 8px;
+      font-size: 17px;
+    }
+
+    p {
+      margin: 8px 0;
+    }
+
+    .eyebrow {
+      margin: 0 0 8px;
+      font-size: 13px;
+      font-weight: 700;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: #475569;
+    }
+
+    .status {
+      margin: 18px 0;
+      padding: 14px 16px;
+      background-color: #eff6ff;
+      border-left: 4px solid #2563eb;
+      border-radius: 6px;
+      font-weight: 700;
+    }
+
+    .button-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin: 20px 0;
+    }
+
+    button {
+      padding: 10px 16px;
+      font: inherit;
+      font-weight: 700;
+      cursor: pointer;
+      color: #ffffff;
+      background-color: #2563eb;
+      border: 1px solid #2563eb;
+      border-radius: 7px;
+    }
+
+    button:hover {
+      background-color: #1d4ed8;
+    }
+
+    button.secondary {
+      color: #1e293b;
+      background-color: #ffffff;
+      border-color: #94a3b8;
+    }
+
+    button.secondary:hover {
+      background-color: #f8fafc;
+    }
+
+    input {
+      width: 100%;
+      padding: 11px 12px;
+      font: inherit;
+      border: 1px solid #94a3b8;
+      border-radius: 7px;
+    }
+
+    input:focus {
+      outline: 3px solid #dbeafe;
+      border-color: #2563eb;
+    }
+
+    ul {
+      margin: 12px 0 0;
+      padding-left: 24px;
+    }
+
+    li {
+      margin-bottom: 8px;
+      padding: 9px 11px;
+      background-color: #f8fafc;
+      border: 1px solid #e2e8f0;
+      border-radius: 6px;
+    }
+
+    .panel {
+      margin-top: 18px;
+      padding: 18px;
+      background-color: #f8fafc;
+      border: 1px solid #cbd5e1;
+      border-radius: 8px;
+    }
+
+    .note {
+      margin-top: 22px;
+      padding: 13px 15px;
+      background-color: #fef3c7;
+      border: 1px solid #f59e0b;
+      border-radius: 7px;
+    }
+
+    .success {
+      background-color: #dcfce7;
+      border-color: #22c55e;
+    }
+
+    .error {
+      background-color: #fee2e2;
+      border-color: #ef4444;
+    }
+
+    .muted {
+      color: #475569;
+    }
+
+    .two-column {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 18px;
+    }
+
+    code,
+    pre {
+      font-family: "Courier New", monospace;
+    }
+
+    code {
+      padding: 2px 5px;
+      background-color: #e2e8f0;
+      border-radius: 4px;
+    }
+
+    pre {
+      margin: 12px 0 0;
+      padding: 14px;
+      overflow-x: auto;
+      color: #ffffff;
+      background-color: #0f172a;
+      border-radius: 8px;
+    }
+
+    .demo-result {
+      margin-top: 12px;
+      padding: 12px 14px;
+      background-color: #f3f4f6;
+      border: 1px solid #cbd5e1;
+      border-radius: 7px;
+    }
+
+    @media (max-width: 640px) {
+      body {
+        padding: 18px 10px;
+      }
+
+      main {
+        padding: 20px;
+      }
+
+      .two-column {
+        grid-template-columns: 1fr;
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <!--
+  Slides covered: 50-52
+
+  Instructor reference:
+  Use this file to verify the homework requirements.
+-->
+  <main>
+    <p class="eyebrow">Instructor solution</p>
+    <h1>Community notice manager</h1>
+    <p id="notice-status" class="status">No new notices</p>
+
+    <div class="button-row">
+      <button id="add-notice">Add notice</button>
+      <button id="remove-notice" class="secondary">Remove latest</button>
+    </div>
+
+    <h2>Notice list</h2>
+    <ul id="notice-list">
+      <li>Library closed on Sunday</li>
+    </ul>
+  </main>
+  <script>
+    const noticeStatus =
+      document.getElementById("notice-status");
+
+    const noticeList =
+      document.querySelector("#notice-list");
+
+    const addNoticeButton =
+      document.getElementById("add-notice");
+
+    const removeNoticeButton =
+      document.querySelector("#remove-notice");
+
+    function handleAddNotice() {
+      const noticeItem =
+        document.createElement("li");
+
+      noticeItem.textContent =
+        "Workshop moved to Room 204";
+
+      noticeList.append(noticeItem);
+
+      noticeStatus.textContent =
+        "A notice was added";
+    }
+
+    function handleRemoveNotice() {
+      const latestNotice =
+        noticeList.querySelector("li:last-child");
+
+      if (latestNotice) {
+        latestNotice.remove();
+
+        noticeStatus.textContent =
+          "The latest notice was removed";
+      } else {
+        noticeStatus.textContent =
+          "No notices to remove";
+      }
+    }
+
+    addNoticeButton.addEventListener(
+      "click",
+      handleAddNotice
+    );
+
+    removeNoticeButton.addEventListener(
+      "click",
+      handleRemoveNotice
+    );
+  </script>
+</body>
+
+</html>

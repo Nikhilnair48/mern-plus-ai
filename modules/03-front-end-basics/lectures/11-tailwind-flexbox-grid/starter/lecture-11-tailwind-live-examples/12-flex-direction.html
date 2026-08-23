@@ -1,0 +1,56 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Slide 12 - Flex direction</title>
+  <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+</head>
+
+<!-- pure CSS: min-height: 100vh; -->
+
+<body class="min-h-screen bg-slate-100 text-slate-900">
+
+  <main class="mx-auto max-w-4xl px-6 py-12">
+    <header class="mb-8">
+      <p class="text-sm font-semibold uppercase tracking-wide text-violet-700">Flexbox demo</p>
+      <h1 class="mt-2 text-3xl font-bold">Compare row and column direction</h1>
+      <p class="mt-2 text-slate-600">Change only the class list on the workflow container.</p>
+    </header>
+
+    <!-- LIVE STEPS:
+       1. Keep "flex" to show the default row.
+       2. Add "flex-row" to make the row direction explicit.
+       3. Replace "flex-row" with "flex-col".
+  -->
+    <section class="flex flex-col gap-4 rounded-2xl border border-slate-300 bg-white p-6 shadow-sm">
+      <article class="rounded-xl border border-blue-200 bg-blue-50 p-5">
+        <p class="text-sm font-semibold text-blue-700">Step 1</p>
+        <h2 class="mt-1 text-lg font-bold">Design</h2>
+        <p class="mt-2 text-sm text-slate-600">Plan the interface.</p>
+      </article>
+
+      <article class="rounded-xl border border-amber-200 bg-amber-50 p-5">
+        <p class="text-sm font-semibold text-amber-700">Step 2</p>
+        <h2 class="mt-1 text-lg font-bold">Develop</h2>
+        <p class="mt-2 text-sm text-slate-600">Build the feature.</p>
+      </article>
+
+      <article class="rounded-xl border border-emerald-200 bg-emerald-50 p-5">
+        <p class="text-sm font-semibold text-emerald-700">Step 3</p>
+        <h2 class="mt-1 text-lg font-bold">Test</h2>
+        <p class="mt-2 text-sm text-slate-600">Check the result.</p>
+      </article>
+    </section>
+
+    <div class="mt-6 grid gap-3 md:grid-cols-3">
+      <code class="rounded-lg bg-slate-900 p-3 text-center text-sm text-white">flex</code>
+      <code class="rounded-lg bg-slate-900 p-3 text-center text-sm text-white">flex flex-row</code>
+      <code class="rounded-lg bg-slate-900 p-3 text-center text-sm text-white">flex flex-col</code>
+    </div>
+  </main>
+
+</body>
+
+</html>

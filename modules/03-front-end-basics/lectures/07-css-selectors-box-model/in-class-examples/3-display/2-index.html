@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>CSS Box Model</title>
+
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f2f2f2;
+        }
+
+        .card {
+            width: 300px;
+
+            /* Space inside the card */
+            padding: 20px;
+
+            /* Line surrounding the card */
+            border: 3px solid black;
+
+            /* Rounded corners */
+            border-radius: 12px;
+
+            /* Space outside the card */
+            margin: 40px auto;
+
+            background-color: white;
+        }
+
+        .card h2 {
+            margin-top: 0;
+        }
+
+        .card button {
+            padding: 10px 20px;
+            border: none;
+            border-radius: 6px;
+            background-color: royalblue;
+            color: white;
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="card">
+        <h2>CSS Box Model</h2>
+
+        <p>
+            This card demonstrates margin, padding, border,
+            and border-radius.
+        </p>
+
+        <button>Learn More</button>
+    </div>
+
+</body>
+
+</html>

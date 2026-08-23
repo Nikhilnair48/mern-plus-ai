@@ -1,0 +1,35 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Slide 44 - Debug missing grid</title>
+  <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+</head>
+
+<body class="min-h-screen bg-slate-100 text-slate-900">
+
+  <main class="mx-auto max-w-4xl px-6 py-12">
+    <header class="mb-8">
+      <p class="text-sm font-semibold uppercase tracking-wide text-rose-700">Debug exercise</p>
+      <h1 class="mt-2 text-3xl font-bold">Why do the columns not appear?</h1>
+      <p class="mt-2 text-slate-600">The class list requests two columns, but the cards still stack.</p>
+    </header>
+
+    <!-- BUG: The display utility "grid" is missing. -->
+    <section class="grid-cols-2 gap-4">
+      <article class="rounded-xl border border-slate-200 bg-white p-5 shadow-sm">Room A</article>
+      <article class="rounded-xl border border-slate-200 bg-white p-5 shadow-sm">Room B</article>
+      <article class="rounded-xl border border-slate-200 bg-white p-5 shadow-sm">Room C</article>
+      <article class="rounded-xl border border-slate-200 bg-white p-5 shadow-sm">Room D</article>
+    </section>
+
+    <aside class="mt-6 rounded-xl bg-rose-50 p-4 text-rose-900">
+      Goal: two columns with consistent spacing.
+    </aside>
+  </main>
+
+</body>
+
+</html>

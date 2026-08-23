@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Component-level Sizing with em</title>
+    <style>
+        /* Button CSS shown in Slide 26 */
+        button {
+            font-size: 20px;
+            padding: 0.5em 1em;
+        }
+
+        /* Parent-child example shown in Slide 26 */
+        .card {
+            font-size: 20px;
+        }
+
+        .card p {
+            font-size: 1.2em;
+        }
+
+        /* Supporting styles */
+        .card {
+            margin-top: 24px;
+            padding: 20px;
+            border: 1px solid gray;
+        }
+    </style>
+</head>
+<body>
+    <button type="button">View Course</button>
+
+    <article class="card">
+        <h2>Course Card</h2>
+        <p>This paragraph is sized relative to the card's font size.</p>
+    </article>
+</body>
+</html>

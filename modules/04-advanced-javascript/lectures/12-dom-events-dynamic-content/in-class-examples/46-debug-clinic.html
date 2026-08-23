@@ -1,0 +1,362 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Lecture 12 debug clinic</title>
+  <style>
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      padding: 32px 16px;
+      font-family: Arial, sans-serif;
+      line-height: 1.5;
+      color: #111827;
+      background-color: #f3f4f6;
+    }
+
+    main {
+      width: 100%;
+      max-width: 760px;
+      margin: 0 auto;
+      padding: 28px;
+      background-color: #ffffff;
+      border: 1px solid #cbd5e1;
+      border-radius: 12px;
+      box-shadow: 0 8px 24px rgba(15, 23, 42, 0.08);
+    }
+
+    h1 {
+      margin: 0 0 8px;
+      font-size: 30px;
+      line-height: 1.2;
+    }
+
+    h2 {
+      margin: 26px 0 10px;
+      font-size: 20px;
+    }
+
+    h3 {
+      margin: 0 0 8px;
+      font-size: 17px;
+    }
+
+    p {
+      margin: 8px 0;
+    }
+
+    .eyebrow {
+      margin: 0 0 8px;
+      font-size: 13px;
+      font-weight: 700;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: #475569;
+    }
+
+    .status {
+      margin: 18px 0;
+      padding: 14px 16px;
+      background-color: #eff6ff;
+      border-left: 4px solid #2563eb;
+      border-radius: 6px;
+      font-weight: 700;
+    }
+
+    .button-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin: 20px 0;
+    }
+
+    button {
+      padding: 10px 16px;
+      font: inherit;
+      font-weight: 700;
+      cursor: pointer;
+      color: #ffffff;
+      background-color: #2563eb;
+      border: 1px solid #2563eb;
+      border-radius: 7px;
+    }
+
+    button:hover {
+      background-color: #1d4ed8;
+    }
+
+    button.secondary {
+      color: #1e293b;
+      background-color: #ffffff;
+      border-color: #94a3b8;
+    }
+
+    button.secondary:hover {
+      background-color: #f8fafc;
+    }
+
+    input {
+      width: 100%;
+      padding: 11px 12px;
+      font: inherit;
+      border: 1px solid #94a3b8;
+      border-radius: 7px;
+    }
+
+    input:focus {
+      outline: 3px solid #dbeafe;
+      border-color: #2563eb;
+    }
+
+    ul {
+      margin: 12px 0 0;
+      padding-left: 24px;
+    }
+
+    li {
+      margin-bottom: 8px;
+      padding: 9px 11px;
+      background-color: #f8fafc;
+      border: 1px solid #e2e8f0;
+      border-radius: 6px;
+    }
+
+    .panel {
+      margin-top: 18px;
+      padding: 18px;
+      background-color: #f8fafc;
+      border: 1px solid #cbd5e1;
+      border-radius: 8px;
+    }
+
+    .note {
+      margin-top: 22px;
+      padding: 13px 15px;
+      background-color: #fef3c7;
+      border: 1px solid #f59e0b;
+      border-radius: 7px;
+    }
+
+    .success {
+      background-color: #dcfce7;
+      border-color: #22c55e;
+    }
+
+    .error {
+      background-color: #fee2e2;
+      border-color: #ef4444;
+    }
+
+    .muted {
+      color: #475569;
+    }
+
+    .two-column {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 18px;
+    }
+
+    code,
+    pre {
+      font-family: "Courier New", monospace;
+    }
+
+    code {
+      padding: 2px 5px;
+      background-color: #e2e8f0;
+      border-radius: 4px;
+    }
+
+    pre {
+      margin: 12px 0 0;
+      padding: 14px;
+      overflow-x: auto;
+      color: #ffffff;
+      background-color: #0f172a;
+      border-radius: 8px;
+    }
+
+    .demo-result {
+      margin-top: 12px;
+      padding: 12px 14px;
+      background-color: #f3f4f6;
+      border: 1px solid #cbd5e1;
+      border-radius: 7px;
+    }
+
+    @media (max-width: 640px) {
+      body {
+        padding: 18px 10px;
+      }
+
+      main {
+        padding: 20px;
+      }
+
+      .two-column {
+        grid-template-columns: 1fr;
+      }
+    }
+
+
+    body {
+      padding: 0;
+      background-color: #e2e8f0;
+    }
+
+    nav {
+      position: sticky;
+      top: 0;
+      z-index: 10;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      padding: 12px 16px;
+      background-color: #0f172a;
+    }
+
+    nav a {
+      padding: 7px 10px;
+      color: #ffffff;
+      text-decoration: none;
+      border: 1px solid #475569;
+      border-radius: 6px;
+    }
+
+    .debug-case {
+      min-height: 100vh;
+      padding: 40px 16px;
+      scroll-margin-top: 64px;
+    }
+
+    .debug-case main {
+      max-width: 760px;
+    }
+  </style>
+</head>
+
+<body>
+  <!--
+  Slides covered: 46-49
+
+  Demo order:
+  1. Use the top links to open one case at a time.
+  2. Reproduce the symptom before discussing the correction.
+  3. Each case contains exactly one intended error.
+-->
+  <nav aria-label="Debug cases">
+    <a href="#debug-1">1. Handler timing</a>
+    <a href="#debug-2">2. Missing append</a>
+    <a href="#debug-3">3. ID lookup</a>
+  </nav>
+
+  <section id="debug-1" class="debug-case">
+    <main>
+      <p class="eyebrow">Debug case 1</p>
+      <h1>The handler runs before the click</h1>
+      <p id="download-status" class="status">Ready to download</p>
+      <div class="button-row">
+        <button id="download-button">Download guide</button>
+      </div>
+      <p class="note error">
+        Expected symptom: the status changes during page load, and clicking the button does nothing.
+      </p>
+    </main>
+  </section>
+
+  <section id="debug-2" class="debug-case">
+    <main>
+      <p class="eyebrow">Debug case 2</p>
+      <h1>The element is created but never displayed</h1>
+      <div class="button-row">
+        <button id="add-item-button">Add packing item</button>
+      </div>
+      <h2>Packing list</h2>
+      <ul id="packing-list"></ul>
+      <p class="note error">
+        Expected symptom: no error appears, but the list remains empty.
+      </p>
+    </main>
+  </section>
+
+  <section id="debug-3" class="debug-case">
+    <main>
+      <p class="eyebrow">Debug case 3</p>
+      <h1>The ID lookup returns null</h1>
+      <p id="save-status" class="status">Changes not saved</p>
+      <div class="panel">
+        <h2>Console result</h2>
+        <p><code>null</code></p>
+      </div>
+      <p class="note error">
+        The HTML uses <code>id="save-status"</code>, but the JavaScript passes <code>"#save-status"</code>.
+      </p>
+    </main>
+  </section>
+  <script>
+    // Debug case 1
+    const downloadStatus =
+      document.getElementById("download-status");
+
+    const downloadButton =
+      document.querySelector("#download-button");
+
+    function handleDownload() {
+      downloadStatus.textContent =
+        "Download started during page load";
+    }
+
+    // Broken: the parentheses call the function immediately.
+    // Correct: pass handleDownload without parentheses.
+    downloadButton.addEventListener(
+      "click",
+      handleDownload()
+    );
+  </script>
+
+  <script>
+    // Debug case 2
+    const packingList =
+      document.querySelector("#packing-list");
+
+    const addItemButton =
+      document.querySelector("#add-item-button");
+
+    function handleAddItem() {
+      const item =
+        document.createElement("li");
+
+      item.textContent =
+        "Packing cubes";
+
+      console.log("Created item:", item);
+
+      // Missing line:
+      // packingList.append(item);
+    }
+
+    addItemButton.addEventListener(
+      "click",
+      handleAddItem
+    );
+  </script>
+
+  <script>
+    // Debug case 3
+    const saveStatus =
+      document.getElementById("#save-status");
+
+    console.log("Broken ID lookup:", saveStatus); // null
+
+    // Correct:
+    // document.getElementById("save-status");
+  </script>
+</body>
+
+</html>

@@ -1,0 +1,450 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Debug 1: Block scope</title>
+  <style>
+    /* Prepared styling. Collapse this style block in VS Code during the JavaScript demo. */
+
+    :root {
+      color-scheme: light;
+      --ink: #0f172a;
+      --muted: #475569;
+      --line: #cbd5e1;
+      --surface: #ffffff;
+      --canvas: #eef2f7;
+      --blue: #1d4ed8;
+      --blue-soft: #dbeafe;
+      --green: #15803d;
+      --green-soft: #dcfce7;
+      --amber: #a16207;
+      --amber-soft: #fef3c7;
+      --red: #b91c1c;
+      --red-soft: #fee2e2;
+      --violet: #6d28d9;
+      --violet-soft: #ede9fe;
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      min-height: 100vh;
+      padding: 36px 20px 56px;
+      font-family: Arial, Helvetica, sans-serif;
+      font-size: 18px;
+      line-height: 1.5;
+      color: var(--ink);
+      background:
+        linear-gradient(135deg, rgba(29, 78, 216, 0.08), transparent 38%),
+        var(--canvas);
+    }
+
+    button,
+    input,
+    select {
+      font: inherit;
+    }
+
+    button {
+      min-height: 46px;
+      padding: 10px 16px;
+      color: #ffffff;
+      background: var(--blue);
+      border: 1px solid var(--blue);
+      border-radius: 8px;
+      cursor: pointer;
+    }
+
+    button:hover {
+      background: #1e40af;
+    }
+
+    button:focus-visible {
+      outline: 3px solid #93c5fd;
+      outline-offset: 3px;
+    }
+
+    .page {
+      width: min(1120px, 100%);
+      margin: 0 auto;
+    }
+
+    .page-header {
+      display: flex;
+      align-items: flex-end;
+      justify-content: space-between;
+      gap: 24px;
+      margin-bottom: 24px;
+    }
+
+    .eyebrow {
+      margin: 0 0 6px;
+      color: var(--blue);
+      font-size: 14px;
+      font-weight: 700;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+    }
+
+    h1,
+    h2,
+    h3,
+    p {
+      margin-top: 0;
+    }
+
+    h1 {
+      margin-bottom: 8px;
+      font-size: clamp(30px, 4vw, 44px);
+      line-height: 1.1;
+    }
+
+    h2 {
+      margin-bottom: 14px;
+      font-size: 23px;
+    }
+
+    h3 {
+      margin-bottom: 8px;
+      font-size: 18px;
+    }
+
+    .lede {
+      max-width: 760px;
+      margin-bottom: 0;
+      color: var(--muted);
+    }
+
+    .layout {
+      display: grid;
+      grid-template-columns: 1.35fr 0.85fr;
+      gap: 22px;
+      align-items: start;
+    }
+
+    .stack {
+      display: grid;
+      gap: 18px;
+    }
+
+    .layout>*,
+    .stack>*,
+    .panel,
+    .metric,
+    .trace dd {
+      min-width: 0;
+    }
+
+    .panel {
+      padding: 22px;
+      background: var(--surface);
+      border: 1px solid var(--line);
+      border-radius: 12px;
+      box-shadow: 0 10px 26px rgba(15, 23, 42, 0.06);
+    }
+
+    .panel--blue {
+      background: var(--blue-soft);
+      border-color: #93c5fd;
+    }
+
+    .panel--green {
+      background: var(--green-soft);
+      border-color: #86efac;
+    }
+
+    .panel--amber {
+      background: var(--amber-soft);
+      border-color: #fcd34d;
+    }
+
+    .panel--red {
+      background: var(--red-soft);
+      border-color: #fca5a5;
+    }
+
+    .button-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+      margin-top: 16px;
+    }
+
+    .button--secondary {
+      color: var(--ink);
+      background: #ffffff;
+      border-color: var(--line);
+    }
+
+    .button--secondary:hover {
+      background: #f8fafc;
+    }
+
+    .button--violet {
+      background: var(--violet);
+      border-color: var(--violet);
+    }
+
+    .button--violet:hover {
+      background: #5b21b6;
+    }
+
+    .session-grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 14px;
+    }
+
+    .session-button {
+      display: grid;
+      gap: 3px;
+      width: 100%;
+      min-height: 82px;
+      text-align: left;
+    }
+
+    .session-button span {
+      font-weight: 700;
+    }
+
+    .session-button small {
+      color: #dbeafe;
+      font-size: 14px;
+    }
+
+    .status {
+      margin: 18px 0 0;
+      padding: 14px 16px;
+      background: #f8fafc;
+      border-left: 5px solid var(--blue);
+      border-radius: 6px;
+    }
+
+    .status--success {
+      background: var(--green-soft);
+      border-left-color: var(--green);
+    }
+
+    .status--error {
+      background: var(--red-soft);
+      border-left-color: var(--red);
+    }
+
+    .metric-grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 10px;
+    }
+
+    .metric {
+      min-height: 90px;
+      padding: 14px;
+      background: #f8fafc;
+      border: 1px solid var(--line);
+      border-radius: 8px;
+    }
+
+    .metric dt {
+      margin-bottom: 4px;
+      color: var(--muted);
+      font-size: 14px;
+      font-weight: 700;
+      text-transform: uppercase;
+    }
+
+    .metric dd {
+      margin: 0;
+      overflow-wrap: anywhere;
+      font-family: "Courier New", monospace;
+      font-size: 16px;
+    }
+
+    .trace {
+      display: grid;
+      grid-template-columns: 150px 1fr;
+      gap: 8px 14px;
+      margin: 0;
+    }
+
+    .trace dt {
+      color: var(--muted);
+      font-weight: 700;
+    }
+
+    .trace dd {
+      margin: 0;
+      font-family: "Courier New", monospace;
+    }
+
+    .code-result {
+      margin: 0;
+      padding: 16px;
+      overflow-x: auto;
+      color: #e2e8f0;
+      background: var(--ink);
+      border-radius: 8px;
+      font-family: "Courier New", monospace;
+      font-size: 15px;
+      overflow-wrap: anywhere;
+      white-space: pre-wrap;
+    }
+
+    .note {
+      margin: 16px 0 0;
+      color: var(--muted);
+      font-size: 15px;
+    }
+
+    .guide {
+      display: none;
+      margin-top: 22px;
+    }
+
+    .guide[data-visible="true"] {
+      display: block;
+    }
+
+    .guide ol {
+      margin-bottom: 0;
+    }
+
+    .badge {
+      display: inline-block;
+      padding: 4px 9px;
+      color: #1e3a8a;
+      background: var(--blue-soft);
+      border: 1px solid #93c5fd;
+      border-radius: 999px;
+      font-size: 14px;
+      font-weight: 700;
+    }
+
+    .error-output {
+      min-height: 58px;
+      margin: 16px 0 0;
+      padding: 13px 15px;
+      color: var(--red);
+      background: var(--red-soft);
+      border: 1px solid #fca5a5;
+      border-radius: 8px;
+      font-family: "Courier New", monospace;
+      font-size: 15px;
+    }
+
+    @media (max-width: 780px) {
+      body {
+        padding: 24px 14px 40px;
+      }
+
+      .page-header {
+        align-items: flex-start;
+        flex-direction: column;
+      }
+
+      .layout,
+      .session-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .metric-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+
+
+    .bug-label {
+      display: inline-block;
+      margin-bottom: 14px;
+      padding: 5px 10px;
+      color: #7f1d1d;
+      background: #fecaca;
+      border-radius: 999px;
+      font-size: 14px;
+      font-weight: 700;
+    }
+
+    .expected {
+      color: var(--green);
+      font-weight: 700;
+    }
+
+    .observed {
+      color: var(--red);
+      font-weight: 700;
+    }
+  </style>
+</head>
+
+<body>
+  <!-- Lecture 13 | Slides 53 | Debug clinic -->
+  <main class="page">
+    <header class="page-header">
+      <div>
+        <p class="eyebrow">Lecture 13 | Slides 53</p>
+        <h1>Debug 1: Block scope</h1>
+        <p class="lede">Reproduce the ReferenceError, identify the inaccessible binding, and move it into the correct
+          scope.</p>
+      </div>
+      <span class="badge">Debug clinic</span>
+    </header>
+
+    <div class="layout">
+      <section class="panel">
+        <span class="bug-label">Broken on purpose</span>
+        <h2>Select a screening</h2>
+        <button id="select-screening" data-screening-id="screen-2">
+          Select <span>Screen 2</span>
+        </button>
+        <p id="screening-status" class="status">No screening selected.</p>
+        <p id="error-output" class="error-output">Click the button to reproduce the error.</p>
+      </section>
+
+      <aside class="panel panel--amber">
+        <h2>Debug question</h2>
+        <p>Why can the handler not access <code>selectedScreening</code>?</p>
+        <p class="note">Inspect the scope of the binding, then apply the commented fix in the script.</p>
+      </aside>
+    </div>
+
+  </main>
+
+  <script>
+    // Slide 53: Scope bug. This file is intentionally broken.
+    "use strict";
+
+    const selectButton = document.querySelector("#select-screening");
+    const screeningStatus = document.querySelector("#screening-status");
+    const errorOutput = document.querySelector("#error-output");
+
+    if (navigator.onLine) {
+      let selectedScreening = null;
+      console.log("Initial selection:", selectedScreening);
+    }
+
+    const handleClick = event => {
+      try {
+        // BUG: selectedScreening exists only inside the if block above.
+        selectedScreening = event.currentTarget.dataset.screeningId;
+        screeningStatus.textContent = `Selected: ${selectedScreening}`;
+      } catch (error) {
+        errorOutput.textContent = error.name + ": " + error.message;
+        console.error(error);
+      }
+    };
+
+    selectButton.addEventListener("click", handleClick);
+
+    // LIVE FIX:
+    // 1. Move this declaration above the if statement:
+    //    let selectedScreening = null;
+    // 2. Remove the declaration from inside the if block.
+    // 3. Click the button again.
+  </script>
+</body>
+
+</html>

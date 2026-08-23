@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mobile-first Course Heading</title>
+    <style>
+        /* Base CSS for smaller viewports shown in Slide 42 */
+        .course-hero {
+            padding: 1.5rem;
+        }
+
+        .course-title {
+            font-size: 1.75rem;
+        }
+
+        /* Enhancement for larger viewports shown in Slide 42 */
+        @media (min-width: 768px) {
+            .course-hero {
+                padding: 3rem;
+            }
+
+            .course-title {
+                font-size: 2.625rem;
+            }
+        }
+
+        /* Supporting style */
+        .course-hero {
+            background-color: #eaf2ff;
+        }
+    </style>
+</head>
+<body>
+    <!-- HTML shown in Slide 42 -->
+    <section class="course-hero">
+        <h1 class="course-title">
+            Full Stack Engineering
+        </h1>
+        <p>Learn to build modern web applications.</p>
+    </section>
+</body>
+</html>

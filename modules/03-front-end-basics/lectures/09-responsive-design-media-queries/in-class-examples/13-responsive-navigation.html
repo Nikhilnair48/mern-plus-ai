@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Responsive Navigation</title>
+    <style>
+        /* Default CSS shown in Slide 32 */
+        .course-nav a {
+            display: inline;
+            margin-right: 16px;
+        }
+
+        /* CSS for smaller viewports shown in Slide 32 */
+        /* 
+            Javascript condition: if(width > 100 && width < 200) { ... }
+            @media (max-width: 600px) and (min-width: 900px)
+            @media (max-width: 600px), (min-width: 900px)
+            @media (orientiation: landscape) { ... }
+            @media (orientiation: portrait) { ... }
+        */
+        @media (max-width: 600px) {
+            .course-nav a {
+                display: block;
+                margin-bottom: 12px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <!-- HTML shown in Slide 32 -->
+    <nav class="course-nav">
+        <a href="#">Home</a>
+        <a href="#">Curriculum</a>
+        <a href="#">Instructor</a>
+        <a href="#">Enroll</a>
+    </nav>
+</body>
+
+</html>

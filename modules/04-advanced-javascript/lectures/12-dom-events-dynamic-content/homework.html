@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        html {
+            font-size: 16px;
+        }
+
+        /* 2em = 20px * 2 => 40px padding */
+        /* 2rem = 16px * 2 => 32px margin */
+        /* 
+           px
+            
+           Group 1 - spacing, sizes, etc:
+                %
+                vh, vw
+            
+            Group 2 - typography: 
+                em, rem
+
+        
+        */
+        .container {
+            font-size: 20px;
+            padding: 2em;
+            margin: 2rem;
+        }
+    </style>
+</head>
+
+<body class="m-8">
+    <main class="border m-8 bg-gray-50">
+        <h1 class="font-bold text-letft mb-4 ">Reading-list Manager</h1>
+        <p class="flex justify-center border rounded-lg bg-violet-50 p-4 ml-8 mr-8" id="reading-status">
+            Your reading list has one book.
+        </p>
+        <ol class="list-decimal pl-6 mb-8" id="reading-list">
+            <li>Clean Code</li>
+            <li>Clean Code</li>
+            <li>Clean Code</li>
+            <li>Clean Code</li>
+            <li>Clean Code</li>
+            <li>Clean Code</li>
+            <li>Clean Code</li>
+            <li>Clean Code</li>
+        </ol>
+        <div class="flex justify-center gap-4 items-center">
+            <button class="border rounded-lg bg-sky-50 p-4" id="add-book">Add book</button>
+            <button class="border rounded-lg bg-stone-50 p-4" id="remove-book">Remove latest</button>
+        </div>
+        <!-- src = source -->
+        <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRsubI1xnS2EsbFC7IKOtHXy3o2yp5zNGHX8-mLk-0nVw&s"
+            alt="HTML image" />
+
+        <!-- Relative path -->
+        <img src="my-image.png" alt="Image not found" />
+    </main>
+    <script src="book.js"></script>
+</body>
+
+</html>

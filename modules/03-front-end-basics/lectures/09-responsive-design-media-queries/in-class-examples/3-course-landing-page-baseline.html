@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Course Landing Page - Fixed-width Baseline</title>
+    <style>
+        /* Body declaration shown in Slide 47 */
+        body {
+            margin: 0;
+            font-family: Arial, sans-serif;
+        }
+
+        /* Fixed-width concept shown in Slides 15 and 17 */
+        .course-info {
+            width: 600px;
+            padding: 24px;
+            border: 1px solid gray;
+        }
+
+        /* Default navigation declarations shown in Slide 32 */
+        .course-nav a {
+            display: inline;
+            margin-right: 16px;
+        }
+
+        /* Supporting styles for the live resize demonstration */
+        .course-info {
+            margin: 24px auto;
+        }
+
+        .course-hero {
+            padding: 48px 24px;
+            background-color: #eaf2ff;
+        }
+
+        .course-hero h2 {
+            font-size: 48px;
+        }
+
+        .course-section,
+        .site-header,
+        .site-footer {
+            padding: 24px 0;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="course-info">
+
+        <header class="site-header">
+            <h1>Full Stack Engineering</h1>
+            <nav class="course-nav">
+                <a href="#about">About</a>
+                <a href="#outcomes">Outcomes</a>
+                <a href="#enrol">Enroll</a>
+            </nav>
+        </header>
+
+        <main class="page-content">
+            <section class="course-hero">
+                <h2>Build Modern Web Applications</h2>
+                <p>Learn HTML, CSS, JavaScript, React, Node.js, and databases.</p>
+                <a href="#enrol">View Course Details</a>
+            </section>
+
+            <section id="about" class="course-section">
+                <h2>About the Course</h2>
+                <p>Develop practical full-stack engineering skills through guided examples and hands-on projects.</p>
+            </section>
+
+            <section id="outcomes" class="course-section">
+                <h2>Learning Outcomes</h2>
+                <p>Build frontend interfaces and backend APIs.</p>
+                <p>Work with relational and non-relational databases.</p>
+                <p>Integrate AI features into full-stack applications.</p>
+            </section>
+        </main>
+
+        <footer class="site-footer">
+            <p>Full Stack Engineering Course</p>
+        </footer>
+
+    </div>
+</body>
+
+</html>

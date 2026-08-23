@@ -1,0 +1,62 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Slide 19 - Grid foundations</title>
+  <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+</head>
+
+<body class="min-h-screen bg-slate-100 text-slate-900">
+
+  <main class="mx-auto max-w-5xl px-6 py-12">
+    <header class="mb-8">
+      <p class="text-sm font-semibold uppercase tracking-wide text-blue-700">Grid demo</p>
+      <h1 class="mt-2 text-3xl font-bold">Create columns and observe new rows</h1>
+      <p class="mt-2 text-slate-600">Change the column utility while keeping the same six items.</p>
+    </header>
+
+    <!-- LIVE STEPS:
+           1. class="grid"
+           2. class="grid grid-cols-2"
+           3. class="grid grid-cols-3"
+      -->
+    <section class="grid gap-4 grid-cols-3">
+      <article class="rounded-xl border border-slate-200 bg-white p-5 shadow-sm">
+        <p class="text-sm font-semibold text-blue-700">1</p>
+        <h2 class="mt-1 text-lg font-bold">Visual Studio Code</h2>
+        <p class="mt-2 text-sm text-slate-600">Edit and debug source code.</p>
+      </article>
+      <article class="rounded-xl border border-slate-200 bg-white p-5 shadow-sm">
+        <p class="text-sm font-semibold text-violet-700">2</p>
+        <h2 class="mt-1 text-lg font-bold">GitHub Desktop</h2>
+        <p class="mt-2 text-sm text-slate-600">Review commits and branches.</p>
+      </article>
+      <article class="rounded-xl border border-slate-200 bg-white p-5 shadow-sm">
+        <p class="text-sm font-semibold text-amber-700">3</p>
+        <h2 class="mt-1 text-lg font-bold">Postman</h2>
+        <p class="mt-2 text-sm text-slate-600">Test HTTP APIs.</p>
+      </article>
+      <article class="rounded-xl border border-slate-200 bg-white p-5 shadow-sm">
+        <p class="text-sm font-semibold text-emerald-700">4</p>
+        <h2 class="mt-1 text-lg font-bold">Chrome DevTools</h2>
+        <p class="mt-2 text-sm text-slate-600">Inspect browser behavior.</p>
+      </article>
+      <article class="rounded-xl border border-slate-200 bg-white p-5 shadow-sm">
+        <p class="text-sm font-semibold text-rose-700">5</p>
+        <h2 class="mt-1 text-lg font-bold">Figma</h2>
+        <p class="mt-2 text-sm text-slate-600">Review interface designs.</p>
+      </article>
+      <article class="rounded-xl border border-slate-200 bg-white p-5 shadow-sm">
+        <p class="text-sm font-semibold text-cyan-700">6</p>
+        <h2 class="mt-1 text-lg font-bold">npm</h2>
+        <p class="mt-2 text-sm text-slate-600">Install project packages.</p>
+      </article>
+
+    </section>
+  </main>
+
+</body>
+
+</html>

@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Home maintenance request tracker</title>
+  <link rel="stylesheet" href="./styles.css">
+</head>
+<body>
+<main>
+  <h1>Home maintenance request tracker</h1>
+  <p>Load one request, create a scheduled copy, and handle a service failure.</p>
+  <p id="maintenance-status" class="status">Maintenance request not loaded</p>
+  <div class="actions">
+    <button id="load-maintenance" type="button">Load request</button>
+    <button id="fail-maintenance" type="button">Simulate failure</button>
+  </div>
+  <pre id="maintenance-output">No result yet</pre>
+</main>
+  <!-- Change the script source to 70-maintenance-starter.js for the starter state. -->
+  <script type="module" src="./70-maintenance-solution.js"></script>
+</body>
+</html>

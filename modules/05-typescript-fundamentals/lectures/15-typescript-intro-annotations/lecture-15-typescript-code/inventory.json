@@ -1,0 +1,28 @@
+{
+  "root": "/mnt/data/lecture-15-typescript-code",
+  "instructorFiles": [
+    "13-16-playground-flow.ts",
+    "17-25-primitives-inference.ts",
+    "28-30-typed-array.ts",
+    "31-33-tuple.ts",
+    "36-38-union.ts",
+    "39-41-literal-types.ts",
+    "44-weather-station-starter.ts",
+    "48-weather-station-solution.ts",
+    "49-parcel-sorting-solution.ts",
+    "49-parcel-sorting-starter.ts",
+    "50-type-repair-broken.ts",
+    "51-type-repair-fixed.ts"
+  ],
+  "learnerFiles": [
+    "13-16-playground-flow.ts",
+    "17-25-primitives-inference.ts",
+    "28-30-typed-array.ts",
+    "31-33-tuple.ts",
+    "36-38-union.ts",
+    "39-41-literal-types.ts",
+    "44-weather-station-starter.ts",
+    "49-parcel-sorting-starter.ts",
+    "50-type-repair-broken.ts"
+  ]
+}

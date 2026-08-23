@@ -1,0 +1,271 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Café order queue - detached order item</title>
+  <style>
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      padding: 32px 16px;
+      font-family: Arial, sans-serif;
+      line-height: 1.5;
+      color: #111827;
+      background-color: #f3f4f6;
+    }
+
+    main {
+      width: 100%;
+      max-width: 760px;
+      margin: 0 auto;
+      padding: 28px;
+      background-color: #ffffff;
+      border: 1px solid #cbd5e1;
+      border-radius: 12px;
+      box-shadow: 0 8px 24px rgba(15, 23, 42, 0.08);
+    }
+
+    h1 {
+      margin: 0 0 8px;
+      font-size: 30px;
+      line-height: 1.2;
+    }
+
+    h2 {
+      margin: 26px 0 10px;
+      font-size: 20px;
+    }
+
+    h3 {
+      margin: 0 0 8px;
+      font-size: 17px;
+    }
+
+    p {
+      margin: 8px 0;
+    }
+
+    .eyebrow {
+      margin: 0 0 8px;
+      font-size: 13px;
+      font-weight: 700;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: #475569;
+    }
+
+    .status {
+      margin: 18px 0;
+      padding: 14px 16px;
+      background-color: #eff6ff;
+      border-left: 4px solid #2563eb;
+      border-radius: 6px;
+      font-weight: 700;
+    }
+
+    .button-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin: 20px 0;
+    }
+
+    button {
+      padding: 10px 16px;
+      font: inherit;
+      font-weight: 700;
+      cursor: pointer;
+      color: #ffffff;
+      background-color: #2563eb;
+      border: 1px solid #2563eb;
+      border-radius: 7px;
+    }
+
+    button:hover {
+      background-color: #1d4ed8;
+    }
+
+    button.secondary {
+      color: #1e293b;
+      background-color: #ffffff;
+      border-color: #94a3b8;
+    }
+
+    button.secondary:hover {
+      background-color: #f8fafc;
+    }
+
+    input {
+      width: 100%;
+      padding: 11px 12px;
+      font: inherit;
+      border: 1px solid #94a3b8;
+      border-radius: 7px;
+    }
+
+    input:focus {
+      outline: 3px solid #dbeafe;
+      border-color: #2563eb;
+    }
+
+    ul {
+      margin: 12px 0 0;
+      padding-left: 24px;
+    }
+
+    li {
+      margin-bottom: 8px;
+      padding: 9px 11px;
+      background-color: #f8fafc;
+      border: 1px solid #e2e8f0;
+      border-radius: 6px;
+    }
+
+    .panel {
+      margin-top: 18px;
+      padding: 18px;
+      background-color: #f8fafc;
+      border: 1px solid #cbd5e1;
+      border-radius: 8px;
+    }
+
+    .note {
+      margin-top: 22px;
+      padding: 13px 15px;
+      background-color: #fef3c7;
+      border: 1px solid #f59e0b;
+      border-radius: 7px;
+    }
+
+    .success {
+      background-color: #dcfce7;
+      border-color: #22c55e;
+    }
+
+    .error {
+      background-color: #fee2e2;
+      border-color: #ef4444;
+    }
+
+    .muted {
+      color: #475569;
+    }
+
+    .two-column {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 18px;
+    }
+
+    code,
+    pre {
+      font-family: "Courier New", monospace;
+    }
+
+    code {
+      padding: 2px 5px;
+      background-color: #e2e8f0;
+      border-radius: 4px;
+    }
+
+    pre {
+      margin: 12px 0 0;
+      padding: 14px;
+      overflow-x: auto;
+      color: #ffffff;
+      background-color: #0f172a;
+      border-radius: 8px;
+    }
+
+    .demo-result {
+      margin-top: 12px;
+      padding: 12px 14px;
+      background-color: #f3f4f6;
+      border: 1px solid #cbd5e1;
+      border-radius: 7px;
+    }
+
+    @media (max-width: 640px) {
+      body {
+        padding: 18px 10px;
+      }
+
+      main {
+        padding: 20px;
+      }
+
+      .two-column {
+        grid-template-columns: 1fr;
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <!--
+  Slides covered: 31-33
+
+  Demo order:
+  1. Click Create order item.
+  2. Observe the status update.
+  3. Inspect the prepared li in the console.
+  4. Confirm that the visible order list remains empty.
+-->
+  <main>
+    <p class="eyebrow">Lecture 12 demo</p>
+    <h1>Café order queue</h1>
+    <p id="order-status" class="status">No new orders</p>
+
+    <div class="button-row">
+      <button id="create-order">Create order item</button>
+    </div>
+
+    <h2>Order list</h2>
+    <ul id="order-list">
+    </ul>
+
+    <div class="panel">
+      <h2>What to inspect</h2>
+      <p>The new <code>li</code> exists in JavaScript, but it is not inserted into the list.</p>
+      <p id="detached-result" class="muted">No detached item has been created yet.</p>
+    </div>
+  </main>
+  <script>
+    const statusMessage = document.getElementById("order-status");
+
+    const orderList = document.querySelector("#order-list");
+
+    const createOrderButton = document.querySelector("#create-order");
+
+    const detachedResult = document.querySelector("#detached-result");
+
+    function handleCreateOrder() {
+      // Slide 31: update existing text.
+      statusMessage.textContent = "New order received";
+
+      // Slide 32: create a detached element.
+      const orderItem = document.createElement("li");
+
+      // Slide 33: prepare the detached element.
+      orderItem.textContent = "Masala chai and vegetable sandwich";
+
+      console.log("Detached order item:", orderItem);
+      console.log("Visible order count:", orderList.children);
+
+      detachedResult.textContent = "Prepared in JavaScript: " + orderItem.textContent;
+
+      // There is deliberately no append call in this file.
+    }
+
+    createOrderButton.addEventListener(
+      "click", handleCreateOrder
+    );
+  </script>
+</body>
+
+</html>

@@ -1,0 +1,56 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Slide 14 - Flex alignment</title>
+  <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+</head>
+
+<body class="min-h-screen bg-slate-100 text-slate-900">
+
+  <main class="mx-auto max-w-4xl px-6 py-12">
+    <header class="mb-8">
+      <p class="text-sm font-semibold uppercase tracking-wide text-cyan-700">Flexbox demo</p>
+      <h1 class="mt-2 text-3xl font-bold">Align items and distribute space</h1>
+      <p class="mt-2 text-slate-600">
+        The items have different heights, so cross-axis alignment is easy to observe.
+      </p>
+    </header>
+
+    <!-- LIVE STEPS:
+       1. Start with "flex".
+       2. Add "items-center" -> y-axis
+       3. Add "justify-between".
+       4. Add "justify-center" -> x-axis
+  -->
+    <section class="flex justify-center rounded-2xl border border-slate-300 bg-white p-6 shadow-sm">
+      <div class="flex gap-4 items-center">
+        <div
+          class="flex h-16 w-16 shrink-0 items-center justify-center rounded-xl bg-cyan-700 text-xl font-bold text-white">
+          TS
+        </div>
+        <div>
+          <p class="text-sm font-medium text-cyan-700">Course progress</p>
+          <h2 class="text-2xl font-bold">TypeScript foundations</h2>
+          <p class="mt-1 text-sm text-slate-600">Variables, functions, arrays, and objects</p>
+        </div>
+      </div>
+
+      <span class="rounded-full bg-amber-100 px-3 py-1 text-sm font-semibold text-amber-800">
+        65% complete
+      </span>
+    </section>
+
+    <aside class="mt-6 rounded-xl bg-slate-900 p-4 text-sm text-slate-100">
+      Try:
+      <code class="ml-2 text-cyan-300">flex</code>
+      <code class="ml-2 text-cyan-300">items-center</code>
+      <code class="ml-2 text-cyan-300">justify-between</code>
+    </aside>
+  </main>
+
+</body>
+
+</html>

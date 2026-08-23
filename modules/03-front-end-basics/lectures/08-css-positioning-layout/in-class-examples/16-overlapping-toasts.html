@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset='UTF-8'>
+    <meta name='viewport' content='width=device-width,initial-scale=1'>
+    <title>16-overlapping-toasts.html</title>
+</head>
+
+<body>
+    <style>
+        .toast {
+            position: fixed;
+            width: 220px;
+            padding: 16px;
+            color: white;
+            border-radius: 8px;
+        }
+
+        .toast-one {
+            top: 40px;
+            right: 40px;
+            background-color: #2563eb;
+            z-index: 1;
+        }
+
+        .toast-two {
+            top: 70px;
+            right: 70px;
+            background-color: #dc2626;
+            z-index: 2;
+        }
+    </style>
+    <div class="toast toast-one">
+        Build completed successfully.
+    </div>
+
+    <div class="toast toast-two">
+        New message received.
+    </div>
+
+</body>
+
+</html>

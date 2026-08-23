@@ -1,0 +1,356 @@
+{
+  "typescriptVersion": "5.8.3",
+  "compilerOptions": {
+    "strict": true,
+    "target": "ES2020",
+    "module": "none"
+  },
+  "files": [
+    {
+      "file": "instructor/13-16-playground-flow.ts",
+      "expectedCodes": [],
+      "actualCodes": [],
+      "ok": true,
+      "diagnostics": []
+    },
+    {
+      "file": "instructor/17-25-primitives-inference.ts",
+      "expectedCodes": [],
+      "actualCodes": [],
+      "ok": true,
+      "diagnostics": []
+    },
+    {
+      "file": "instructor/28-30-typed-array.ts",
+      "expectedCodes": [],
+      "actualCodes": [],
+      "ok": true,
+      "diagnostics": []
+    },
+    {
+      "file": "instructor/31-33-tuple.ts",
+      "expectedCodes": [],
+      "actualCodes": [],
+      "ok": true,
+      "diagnostics": []
+    },
+    {
+      "file": "instructor/36-38-union.ts",
+      "expectedCodes": [],
+      "actualCodes": [],
+      "ok": true,
+      "diagnostics": []
+    },
+    {
+      "file": "instructor/39-41-literal-types.ts",
+      "expectedCodes": [],
+      "actualCodes": [],
+      "ok": true,
+      "diagnostics": []
+    },
+    {
+      "file": "instructor/44-weather-station-starter.ts",
+      "expectedCodes": [
+        2322
+      ],
+      "actualCodes": [
+        2322
+      ],
+      "ok": true,
+      "diagnostics": [
+        "mnt/data/lecture-15-typescript-code/instructor/44-weather-station-starter.ts(13,1): error TS2322: Type 'string' is not assignable to type 'number'."
+      ]
+    },
+    {
+      "file": "instructor/48-weather-station-solution.ts",
+      "expectedCodes": [],
+      "actualCodes": [],
+      "ok": true,
+      "diagnostics": []
+    },
+    {
+      "file": "instructor/49-parcel-sorting-solution.ts",
+      "expectedCodes": [],
+      "actualCodes": [],
+      "ok": true,
+      "diagnostics": []
+    },
+    {
+      "file": "instructor/49-parcel-sorting-starter.ts",
+      "expectedCodes": [],
+      "actualCodes": [],
+      "ok": true,
+      "diagnostics": []
+    },
+    {
+      "file": "instructor/50-type-repair-broken.ts",
+      "expectedCodes": [
+        2322,
+        2322,
+        2820
+      ],
+      "actualCodes": [
+        2322,
+        2322,
+        2820
+      ],
+      "ok": true,
+      "diagnostics": [
+        "mnt/data/lecture-15-typescript-code/instructor/50-type-repair-broken.ts(10,5): error TS2322: Type 'string' is not assignable to type 'number'.",
+        "mnt/data/lecture-15-typescript-code/instructor/50-type-repair-broken.ts(11,39): error TS2322: Type 'string' is not assignable to type 'number'.",
+        "mnt/data/lecture-15-typescript-code/instructor/50-type-repair-broken.ts(12,5): error TS2820: Type '\"jpeg\"' is not assignable to type '\"jpg\" | \"png\" | \"webp\"'. Did you mean '\"jpg\"'?"
+      ]
+    },
+    {
+      "file": "instructor/51-type-repair-fixed.ts",
+      "expectedCodes": [],
+      "actualCodes": [],
+      "ok": true,
+      "diagnostics": []
+    },
+    {
+      "file": "learner/13-16-playground-flow.ts",
+      "expectedCodes": [],
+      "actualCodes": [],
+      "ok": true,
+      "diagnostics": []
+    },
+    {
+      "file": "learner/17-25-primitives-inference.ts",
+      "expectedCodes": [],
+      "actualCodes": [],
+      "ok": true,
+      "diagnostics": []
+    },
+    {
+      "file": "learner/28-30-typed-array.ts",
+      "expectedCodes": [],
+      "actualCodes": [],
+      "ok": true,
+      "diagnostics": []
+    },
+    {
+      "file": "learner/31-33-tuple.ts",
+      "expectedCodes": [],
+      "actualCodes": [],
+      "ok": true,
+      "diagnostics": []
+    },
+    {
+      "file": "learner/36-38-union.ts",
+      "expectedCodes": [],
+      "actualCodes": [],
+      "ok": true,
+      "diagnostics": []
+    },
+    {
+      "file": "learner/39-41-literal-types.ts",
+      "expectedCodes": [],
+      "actualCodes": [],
+      "ok": true,
+      "diagnostics": []
+    },
+    {
+      "file": "learner/44-weather-station-starter.ts",
+      "expectedCodes": [
+        2322
+      ],
+      "actualCodes": [
+        2322
+      ],
+      "ok": true,
+      "diagnostics": [
+        "mnt/data/lecture-15-typescript-code/learner/44-weather-station-starter.ts(12,1): error TS2322: Type 'string' is not assignable to type 'number'."
+      ]
+    },
+    {
+      "file": "learner/49-parcel-sorting-starter.ts",
+      "expectedCodes": [],
+      "actualCodes": [],
+      "ok": true,
+      "diagnostics": []
+    },
+    {
+      "file": "learner/50-type-repair-broken.ts",
+      "expectedCodes": [
+        2322,
+        2322,
+        2820
+      ],
+      "actualCodes": [
+        2322,
+        2322,
+        2820
+      ],
+      "ok": true,
+      "diagnostics": [
+        "mnt/data/lecture-15-typescript-code/learner/50-type-repair-broken.ts(12,5): error TS2322: Type 'string' is not assignable to type 'number'.",
+        "mnt/data/lecture-15-typescript-code/learner/50-type-repair-broken.ts(13,39): error TS2322: Type 'string' is not assignable to type 'number'.",
+        "mnt/data/lecture-15-typescript-code/learner/50-type-repair-broken.ts(14,5): error TS2820: Type '\"jpeg\"' is not assignable to type '\"jpg\" | \"png\" | \"webp\"'. Did you mean '\"jpg\"'?"
+      ]
+    }
+  ],
+  "runtime": {
+    "playgroundFlow": {
+      "file": "instructor/13-16-playground-flow.ts",
+      "expected": [
+        "Designing for small screens"
+      ],
+      "actual": [
+        "Designing for small screens"
+      ],
+      "ok": true
+    },
+    "weatherSolution": {
+      "file": "instructor/48-weather-station-solution.ts",
+      "expected": [
+        "North campus | 28\u00b0C | watch"
+      ],
+      "actual": [
+        "North campus | 28\u00b0C | watch"
+      ],
+      "ok": true
+    },
+    "parcelSolution": {
+      "file": "instructor/49-parcel-sorting-solution.ts",
+      "expected": [
+        "PK-4821 | 2.4 kg | sorted"
+      ],
+      "actual": [
+        "PK-4821 | 2.4 kg | sorted"
+      ],
+      "ok": true
+    }
+  },
+  "inference": {
+    "instructor/17-25-primitives-inference.ts": {
+      "expected": {
+        "episodeTitle": "string",
+        "durationMinutes": "number",
+        "isDownloaded": "boolean"
+      },
+      "actual": {
+        "episodeTitle": "string",
+        "durationMinutes": "number",
+        "isDownloaded": "boolean"
+      },
+      "ok": true
+    },
+    "instructor/39-41-literal-types.ts": {
+      "expected": {
+        "inferredMode": "string",
+        "playbackMode": "\"normal\" | \"repeat\" | \"shuffle\""
+      },
+      "actual": {
+        "inferredMode": "string",
+        "playbackMode": "\"normal\" | \"repeat\" | \"shuffle\""
+      },
+      "ok": true
+    },
+    "instructor/44-weather-station-starter.ts": {
+      "expected": {
+        "stationName": "string",
+        "temperature": "number",
+        "isRaining": "boolean"
+      },
+      "actual": {
+        "stationName": "string",
+        "temperature": "number",
+        "isRaining": "boolean"
+      },
+      "ok": true
+    }
+  },
+  "starterProtection": {
+    "weatherStarter": {
+      "ok": true,
+      "leakedPatterns": []
+    },
+    "parcelStarter": {
+      "ok": true,
+      "leakedPatterns": []
+    }
+  },
+  "formatting": {
+    "ok": true,
+    "issues": []
+  },
+  "scope": {
+    "ok": true,
+    "violations": []
+  },
+  "zipValidation": {
+    "complete": {
+      "ok": true,
+      "fileCount": 27,
+      "hashesMatch": true
+    },
+    "instructor": {
+      "ok": true,
+      "fileCount": 15,
+      "hashesMatch": true,
+      "files": [
+        "13-16-playground-flow.ts",
+        "17-25-primitives-inference.ts",
+        "28-30-typed-array.ts",
+        "31-33-tuple.ts",
+        "36-38-union.ts",
+        "39-41-literal-types.ts",
+        "44-weather-station-starter.ts",
+        "48-weather-station-solution.ts",
+        "49-parcel-sorting-solution.ts",
+        "49-parcel-sorting-starter.ts",
+        "50-type-repair-broken.ts",
+        "51-type-repair-fixed.ts"
+      ]
+    },
+    "learner": {
+      "ok": true,
+      "fileCount": 10,
+      "hashesMatch": true,
+      "noSolutions": true,
+      "files": [
+        "13-16-playground-flow.ts",
+        "17-25-primitives-inference.ts",
+        "28-30-typed-array.ts",
+        "31-33-tuple.ts",
+        "36-38-union.ts",
+        "39-41-literal-types.ts",
+        "44-weather-station-starter.ts",
+        "49-parcel-sorting-starter.ts",
+        "50-type-repair-broken.ts"
+      ]
+    },
+    "ok": true
+  },
+  "failures": [],
+  "inventory": {
+    "ok": true,
+    "instructor": [
+      "13-16-playground-flow.ts",
+      "17-25-primitives-inference.ts",
+      "28-30-typed-array.ts",
+      "31-33-tuple.ts",
+      "36-38-union.ts",
+      "39-41-literal-types.ts",
+      "44-weather-station-starter.ts",
+      "48-weather-station-solution.ts",
+      "49-parcel-sorting-solution.ts",
+      "49-parcel-sorting-starter.ts",
+      "50-type-repair-broken.ts",
+      "51-type-repair-fixed.ts"
+    ],
+    "learner": [
+      "13-16-playground-flow.ts",
+      "17-25-primitives-inference.ts",
+      "28-30-typed-array.ts",
+      "31-33-tuple.ts",
+      "36-38-union.ts",
+      "39-41-literal-types.ts",
+      "44-weather-station-starter.ts",
+      "49-parcel-sorting-starter.ts",
+      "50-type-repair-broken.ts"
+    ]
+  },
+  "ok": true
+}
