@@ -1,0 +1,120 @@
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  font-family: Arial, sans-serif;
+  background: #f5f5f5;
+  color: #222;
+}
+
+button,
+input {
+  font: inherit;
+}
+
+button {
+  padding: 8px 12px;
+  border: 1px solid #999;
+  border-radius: 4px;
+  background: #fff;
+  cursor: pointer;
+}
+
+button:hover {
+  background: #f0f0f0;
+}
+
+.page-shell {
+  max-width: 760px;
+  margin: 0 auto;
+  padding: 32px 20px 48px;
+}
+
+.page-heading {
+  margin-bottom: 24px;
+}
+
+.page-heading h1 {
+  margin: 0 0 8px;
+}
+
+.page-heading p {
+  margin: 0;
+  color: #555;
+}
+
+.stack {
+  display: grid;
+  gap: 20px;
+}
+
+.panel {
+  padding: 20px;
+  border: 1px solid #d8d8d8;
+  border-radius: 6px;
+  background: #fff;
+}
+
+.panel h2 {
+  margin-top: 0;
+}
+
+.status-line {
+  margin: 12px 0;
+}
+
+.checkbox-row {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin: 16px 0;
+}
+
+.feedback-list,
+.task-list,
+.album-list {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.feedback-item,
+.task-item,
+.album-item {
+  padding: 14px 0;
+  border-top: 1px solid #e2e2e2;
+}
+
+.feedback-item:first-child,
+.task-item:first-child,
+.album-item:first-child {
+  border-top: 0;
+  padding-top: 0;
+}
+
+.feedback-item h3,
+.task-item h3,
+.album-item h3 {
+  margin: 0 0 6px;
+  font-size: 1rem;
+}
+
+.feedback-item p,
+.task-item p,
+.album-item p {
+  margin: 4px 0;
+}
+
+.muted {
+  color: #666;
+}
+
+.message {
+  margin: 0;
+}
+
+code {
+  font-family: "Courier New", monospace;
+}
