@@ -1,0 +1,176 @@
+* {
+  box-sizing: border-box;
+}
+
+:root {
+  font-family: Inter, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  color: #182033;
+  background: #f5f7fb;
+  font-synthesis: none;
+}
+
+body {
+  margin: 0;
+  min-width: 320px;
+  min-height: 100vh;
+}
+
+button,
+input,
+textarea,
+select {
+  font: inherit;
+}
+
+button {
+  cursor: pointer;
+}
+
+.page-shell {
+  width: min(1080px, calc(100% - 32px));
+  margin: 40px auto;
+}
+
+.page-heading {
+  margin-bottom: 24px;
+}
+
+.page-heading h1 {
+  margin: 0 0 8px;
+  font-size: clamp(2rem, 4vw, 3rem);
+}
+
+.page-heading p {
+  margin: 0;
+  color: #56647d;
+}
+
+.idea-grid {
+  display: grid;
+  grid-template-columns: minmax(0, 1.2fr) minmax(280px, 0.8fr);
+  gap: 24px;
+  align-items: start;
+}
+
+.panel {
+  background: #ffffff;
+  border: 1px solid #d8e0eb;
+  border-radius: 14px;
+  padding: 24px;
+  box-shadow: 0 10px 28px rgba(29, 42, 67, 0.06);
+}
+
+.panel h2 {
+  margin: 0 0 18px;
+  font-size: 1.25rem;
+}
+
+.form-stack {
+  display: grid;
+  gap: 18px;
+}
+
+.field {
+  display: grid;
+  gap: 7px;
+}
+
+.field label,
+fieldset legend {
+  font-weight: 650;
+}
+
+input[type="text"],
+textarea,
+select {
+  width: 100%;
+  border: 1px solid #bac6d7;
+  border-radius: 9px;
+  padding: 10px 12px;
+  color: #182033;
+  background: #ffffff;
+}
+
+textarea {
+  min-height: 120px;
+  resize: vertical;
+}
+
+fieldset {
+  margin: 0;
+  padding: 0;
+  border: 0;
+}
+
+.choice-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px 20px;
+  margin-top: 8px;
+}
+
+.choice {
+  display: inline-flex;
+  gap: 8px;
+  align-items: center;
+  font-weight: 550;
+}
+
+.primary-button {
+  width: fit-content;
+  border: 0;
+  border-radius: 9px;
+  padding: 10px 16px;
+  background: #2456d8;
+  color: #ffffff;
+  font-weight: 700;
+}
+
+.primary-button:disabled {
+  cursor: not-allowed;
+  background: #aeb9cb;
+}
+
+.preview-card {
+  display: grid;
+  gap: 8px;
+  padding: 18px;
+  border: 1px solid #d8e0eb;
+  border-radius: 11px;
+  background: #f8faff;
+}
+
+.preview-card p {
+  margin: 0;
+}
+
+.preview-card strong {
+  font-size: 1.1rem;
+}
+
+.feedback {
+  display: grid;
+  gap: 5px;
+  margin-top: 14px;
+  color: #53617a;
+}
+
+.feedback p {
+  margin: 0;
+}
+
+.ready {
+  color: #17633b;
+  font-weight: 700;
+}
+
+.not-ready {
+  color: #9b3b27;
+  font-weight: 700;
+}
+
+@media (max-width: 760px) {
+  .idea-grid {
+    grid-template-columns: 1fr;
+  }
+}
