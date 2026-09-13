@@ -9,8 +9,21 @@ type FeedbackItem = {
   body: string;
 };
 
-const feedbackUrl =
-  "https://jsonplaceholder.typicode.com/comments?postId=1";
+type CreateFeedbackInput = {
+  postId: number;
+  name: string;
+  email: string;
+  body: string;
+};
+
+type UpdateFeedbackInput = {
+  body: string;
+};
+
+// Base URL: https://jsonplaceholder.typicode.com/comments
+// GET URL: https://jsonplaceholder.typicode.com/comments?postId=1
+const commentsUrl = "https://jsonplaceholder.typicode.com/comments";
+const feedbackUrl = `${commentsUrl}?postId=1`;
 
 function Feedback() {
   const [feedbackItems, setFeedbackItems] = useState<FeedbackItem[]>([]);
@@ -60,6 +73,25 @@ function Feedback() {
   async function handleSubmit(event: FormEvent<HTMLFormElement>) {
     event.preventDefault();
 
+    const newFeedback: CreateFeedbackInput = {
+      postId: 1,
+      // because key "name" and the value (name variable) is exactly the same
+      name,
+      email,
+      // we can do the same with body; instead of "body: body" -> body
+      body: body
+    }
+
+    const response = await axios.post(feedbackUrl, newFeedback);
+    const createdFeedback = response.data;
+    setFeedbackItems([createdFeedback, ...feedbackItems]);
+    // update localStorage with the new feeback
+    // if you set name, email, feedback in localStorage -> clear it at this stage
+    setName("");
+    setEmail("");
+    setBody("");
+
+
     /*
      * TODO - Slides 32-33
      * Submit new feedback, then use the returned item in the current UI.
@@ -71,13 +103,31 @@ function Feedback() {
     setUpdatedBody(item.body);
   }
 
+  /*
+   * TODO - Slides 34-35
+   * Send the edited feedback and apply the returned item to current state.
+   */
   async function handleSave(feedbackId: number) {
-    void feedbackId;
+    const update: UpdateFeedbackInput = {
+      body: updatedBody
+    };
 
-    /*
-     * TODO - Slides 34-35
-     * Send the edited feedback and apply the returned item to current state.
-     */
+    // base url + feedback ID
+    const response = await axios.patch(`${commentsUrl}/${editingId}`, update);
+    const updatedFeedback = response.data;
+    const nextFeedbackItems = feedbackItems.map(feedback => {
+      // if this feedback equals the updated feedback -> modify it
+      if (feedback.id === updatedFeedback.id) {
+        return updatedFeedback;
+      }
+      // else -> return the feedback
+      return feedback;
+    });
+
+    setFeedbackItems(nextFeedbackItems);
+    setEditingId(null);
+    setUpdatedBody("");
+
   }
 
   async function handleRemove(feedbackId: number) {
