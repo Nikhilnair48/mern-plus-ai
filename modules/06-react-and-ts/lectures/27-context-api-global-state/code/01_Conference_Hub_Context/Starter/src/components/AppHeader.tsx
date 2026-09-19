@@ -1,12 +1,14 @@
 import { Link } from "react-router-dom";
 import DisplayModeBadge from "./DisplayModeBadge";
-import type { DisplayMode } from "../types/displayPreferences";
+import { useContext } from "react";
+import { DisplayPreferencesContext } from "../context/DisplayPreferencesContext";
 
-type AppHeaderProps = {
-  displayMode: DisplayMode;
-};
+function AppHeader() {
+  const displayPreferences = useContext(DisplayPreferencesContext);
+  if (displayPreferences === null) {
+    throw new Error("DisplayPreferencesContext provider is missing!");
+  }
 
-function AppHeader({ displayMode }: AppHeaderProps) {
   return (
     <header className="app-header">
       <div className="app-header-copy">
@@ -21,7 +23,7 @@ function AppHeader({ displayMode }: AppHeaderProps) {
           <Link to="/schedule">Schedule</Link>
           <Link to="/feedback">Feedback</Link>
         </nav>
-        <DisplayModeBadge displayMode={displayMode} />
+        <DisplayModeBadge displayMode={displayPreferences.displayMode} />
       </div>
     </header>
   );

@@ -1,12 +1,6 @@
 import PreferencesPanel from "../components/PreferencesPanel";
-import type { DisplayMode } from "../types/displayPreferences";
 
-type HomeProps = {
-  displayMode: DisplayMode;
-  onDisplayModeChange: (nextMode: DisplayMode) => void;
-};
-
-function Home({ displayMode, onDisplayModeChange }: HomeProps) {
+function Home() {
   return (
     <section className="page-card">
       <p className="eyebrow">Conference Hub</p>
@@ -16,10 +10,7 @@ function Home({ displayMode, onDisplayModeChange }: HomeProps) {
         conference.
       </p>
 
-      <PreferencesPanel
-        displayMode={displayMode}
-        onDisplayModeChange={onDisplayModeChange}
-      />
+      <PreferencesPanel />
     </section>
   );
 }

@@ -1,17 +1,22 @@
 import { Link } from "react-router-dom";
 import type { Session } from "../data/sessions";
-import type { DisplayMode } from "../types/displayPreferences";
+import { useContext } from "react";
+import { DisplayPreferencesContext } from "../context/DisplayPreferencesContext";
 
 type SessionListProps = {
   sessions: Session[];
-  displayMode: DisplayMode;
 };
 
-function SessionList({ sessions, displayMode }: SessionListProps) {
+function SessionList({ sessions }: SessionListProps) {
+  const displayPreferences = useContext(DisplayPreferencesContext);
+  if (displayPreferences === null) {
+    throw new Error("DisplayPreferencesContext provider is missing!");
+  }
+
   return (
-    <ul className={`item-list item-list--${displayMode}`}>
+    <ul className={`item-list item-list--${displayPreferences.displayMode}`}>
       {sessions.map((session) => (
-        <li className={`item-card item-card--${displayMode}`} key={session.id}>
+        <li className={`item-card item-card--${displayPreferences.displayMode}`} key={session.id}>
           <div className="item-copy">
             <Link className="text-link" to={`/sessions/${session.id}`}>
               {session.title}

@@ -9,46 +9,48 @@ import Schedule from "./pages/Schedule";
 import SessionDetails from "./pages/SessionDetails";
 import Sessions from "./pages/Sessions";
 import type { DisplayMode } from "./types/displayPreferences";
+import { DisplayPreferencesContext } from "./context/DisplayPreferencesContext";
 
 function App() {
   const [displayMode, setDisplayMode] = useState<DisplayMode>("comfortable");
 
   function handleDisplayModeChange(nextMode: DisplayMode) {
+    console.log(nextMode);
     setDisplayMode(nextMode);
   }
 
+  const displayPreferences = {
+    displayMode,
+    changeDisplayMode: handleDisplayModeChange
+  };
+
   return (
     <div className="app-shell">
-      {/* TODO — Slides 17–22
-       * Give distant descendants a shared access path
-       * without moving this state out of App.
-       */}
-      <AppHeader displayMode={displayMode} />
+      <DisplayPreferencesContext.Provider value={displayPreferences}>
+        <AppHeader />
 
-      <main>
-        <Routes>
-          <Route
-            path="/"
-            element={
-              <Home
-                displayMode={displayMode}
-                onDisplayModeChange={handleDisplayModeChange}
-              />
-            }
-          />
-          <Route
-            path="/sessions"
-            element={<Sessions displayMode={displayMode} />}
-          />
-          <Route path="/sessions/:sessionId" element={<SessionDetails />} />
-          <Route path="/feedback" element={<Feedback />} />
+        <main>
+          <Routes>
+            <Route
+              path="/"
+              element={
+                <Home />
+              }
+            />
+            <Route
+              path="/sessions"
+              element={<Sessions />}
+            />
+            <Route path="/sessions/:sessionId" element={<SessionDetails />} />
+            <Route path="/feedback" element={<Feedback />} />
 
-          <Route path="/schedule" element={<Schedule />}>
-            <Route path="day-1" element={<DayOneSchedule />} />
-            <Route path="day-2" element={<DayTwoSchedule />} />
-          </Route>
-        </Routes>
-      </main>
+            <Route path="/schedule" element={<Schedule />}>
+              <Route path="day-1" element={<DayOneSchedule />} />
+              <Route path="day-2" element={<DayTwoSchedule />} />
+            </Route>
+          </Routes>
+        </main>
+        </DisplayPreferencesContext.Provider>
     </div>
   );
 }

@@ -2,13 +2,8 @@ import { type FormEvent, useState } from "react";
 import { useNavigate, useSearchParams } from "react-router-dom";
 import SessionList from "../components/SessionList";
 import { sessions } from "../data/sessions";
-import type { DisplayMode } from "../types/displayPreferences";
 
-type SessionsProps = {
-  displayMode: DisplayMode;
-};
-
-function Sessions({ displayMode }: SessionsProps) {
+function Sessions() {
   const [searchParams, setSearchParams] = useSearchParams();
   const [sessionId, setSessionId] = useState("S-102");
   const navigate = useNavigate();
@@ -65,7 +60,7 @@ function Sessions({ displayMode }: SessionsProps) {
        * Remove the forwarding-only dependency
        * while preserving the same visible behavior.
        */}
-      <SessionList sessions={visibleSessions} displayMode={displayMode} />
+      <SessionList sessions={visibleSessions} />
 
       <form className="form-card" onSubmit={handleSubmit}>
         <h3>Open a session</h3>

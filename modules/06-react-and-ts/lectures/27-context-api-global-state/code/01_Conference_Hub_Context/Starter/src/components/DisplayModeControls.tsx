@@ -1,14 +1,12 @@
-import type { DisplayMode } from "../types/displayPreferences";
+import { useContext } from "react";
+import { DisplayPreferencesContext } from "../context/DisplayPreferencesContext";
 
-type DisplayModeControlsProps = {
-  displayMode: DisplayMode;
-  onDisplayModeChange: (nextMode: DisplayMode) => void;
-};
+function DisplayModeControls() {
+  const displayPreferences = useContext(DisplayPreferencesContext);
+  if (displayPreferences === null) {
+    throw new Error("DisplayPreferencesContext provider is missing!");
+  }
 
-function DisplayModeControls({
-  displayMode,
-  onDisplayModeChange,
-}: DisplayModeControlsProps) {
   return (
     <div className="preferences-controls">
       <div>
@@ -18,15 +16,15 @@ function DisplayModeControls({
 
       <div className="action-row" aria-label="Display mode controls">
         <button
-          className={displayMode === "comfortable" ? "active" : "secondary"}
-          onClick={() => onDisplayModeChange("comfortable")}
+          className={displayPreferences.displayMode === "comfortable" ? "active" : "secondary"}
+          onClick={() => displayPreferences.changeDisplayMode("comfortable")}
           type="button"
         >
           Comfortable
         </button>
         <button
-          className={displayMode === "compact" ? "active" : "secondary"}
-          onClick={() => onDisplayModeChange("compact")}
+          className={displayPreferences.displayMode === "compact" ? "active" : "secondary"}
+          onClick={() => displayPreferences.changeDisplayMode("compact")}
           type="button"
         >
           Compact
