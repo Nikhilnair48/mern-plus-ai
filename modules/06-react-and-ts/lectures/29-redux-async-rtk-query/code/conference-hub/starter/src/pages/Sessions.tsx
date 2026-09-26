@@ -1,12 +1,19 @@
 import { type FormEvent, useState } from "react";
 import { useNavigate, useSearchParams } from "react-router-dom";
 import SessionList from "../components/SessionList";
-import { sessions } from "../data/sessions";
+import { useAppDispatch, useAppSelector } from "../app/hooks";
+import { fetchSessions } from "../features/sessions/sessionsSlice";
 
 function Sessions() {
   const [searchParams, setSearchParams] = useSearchParams();
   const [sessionId, setSessionId] = useState("S-102");
   const navigate = useNavigate();
+  const dispatch = useAppDispatch();
+  const {
+    items: sessions,
+    status,
+    error
+  } = useAppSelector((state) => state.sessions)
 
   const selectedTrack = searchParams.get("track") ?? "all";
 
@@ -27,6 +34,23 @@ function Sessions() {
   function handleSubmit(event: FormEvent<HTMLFormElement>) {
     event.preventDefault();
     navigate(`/sessions/${sessionId}`);
+  }
+  if (status === "pending") {
+    return "Fetching sessions...";
+  }
+  
+  if (status === "rejected") {
+    return (
+      <p>
+        {error ?? "Could not load sessions."}
+      </p>
+    )
+  }
+
+  if (visibleSessions.length === 0) {
+    return (
+      <p>No sessions available.</p>
+    )
   }
 
   return (

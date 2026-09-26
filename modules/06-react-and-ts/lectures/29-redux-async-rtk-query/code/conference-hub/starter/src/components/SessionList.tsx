@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 import { useAppDispatch, useAppSelector } from "../app/hooks";
 import { DisplayPreferencesContext } from "../context/DisplayPreferencesContext";
 import { sessionSaved } from "../features/planner/plannerSlice";
-import type { Session } from "../data/sessions";
+import type { Session } from "../types/sessions";
 
 type SessionListProps = {
   sessions: Session[];
