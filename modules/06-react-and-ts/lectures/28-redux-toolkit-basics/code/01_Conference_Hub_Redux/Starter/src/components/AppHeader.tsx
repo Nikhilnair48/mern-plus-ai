@@ -1,7 +1,12 @@
 import { Link } from "react-router-dom";
 import DisplayModeBadge from "./DisplayModeBadge";
+import { useAppSelector } from "../hooks";
 
 function AppHeader() {
+  const savedCount = useAppSelector(
+    (state) => state.planner.savedSessionIds.length
+  );
+
   return (
     <header className="app-header">
       <div className="app-header-copy">
@@ -17,7 +22,10 @@ function AppHeader() {
           <Link to="/schedule">Schedule</Link>
           <Link to="/feedback">Feedback</Link>
         </nav>
-        <DisplayModeBadge />
+        <div>
+          <span>Saved: {savedCount}</span>
+          <DisplayModeBadge />
+        </div>
       </div>
     </header>
   );
