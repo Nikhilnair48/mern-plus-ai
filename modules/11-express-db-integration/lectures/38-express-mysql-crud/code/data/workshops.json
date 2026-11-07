@@ -1,0 +1,27 @@
+[
+  {
+    "_id": 101,
+    "title": "Intro to Pottery",
+    "seats": 12
+  },
+  {
+    "_id": 102,
+    "title": "Street Photography Walk",
+    "seats": 15
+  },
+  {
+    "_id": 103,
+    "title": "Sourdough Basics",
+    "seats": 12
+  },
+  {
+    "_id": 104,
+    "title": "Watercolour Landscapes",
+    "seats": 18
+  },
+  {
+    "_id": 105,
+    "title": "Podcast Storytelling",
+    "seats": 20
+  }
+]
