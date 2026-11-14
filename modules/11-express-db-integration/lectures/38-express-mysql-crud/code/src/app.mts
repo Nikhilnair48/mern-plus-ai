@@ -6,6 +6,18 @@ import {
   parseWorkshopId, validateWorkshopInput, workshopSummary
 } from "./workshop-core.mts";
 import type { Workshop } from "./workshop-core.mts";
+import { pool } from "./db.mts";
+import type { ResultSetHeader, RowDataPacket } from "mysql2";
+
+type WorkShopRow = RowDataPacket & Workshop;
+
+async function findWorkshop(id: number): Promise<Workshop | null> {
+  // ? is part of prepared statement
+  const [rows] = await pool.execute<WorkShopRow[]>(
+    "SELECT _id, title, seats FROM workshops WHERE _id = ?", [id]
+  );
+  return rows[0] ?? null;
+}
 
 export function createApp(seed: Workshop[]) {
   const app = express();
@@ -28,19 +40,15 @@ export function createApp(seed: Workshop[]) {
     res.type("text/plain").send("OK");
   });
 
-  app.get("/workshops", (req, res) => {
-    const items = [...workshops.values()];
+  app.get("/workshops", async (req, res) => {
     const raw = req.query.minSeats;
-    if (raw === undefined) {
-      res.json(items);
-      return;
-    }
-    const minSeats = parseMinSeats(raw);
-    if (minSeats === null) {
+    const min = parseMinSeats(raw);
+    if (raw !== undefined && min === null) {
       res.status(400).json({ error: "Invalid minSeats" });
       return;
     }
-    res.json(items.filter((item) => item.seats >= minSeats));
+    const [rows] = await pool.execute<WorkShopRow[]>("SELECT _id, title, seats FROM workshops ORDER BY _id ASC");
+    res.json(min === null ? rows : rows.filter(row => row.seats >= min));
   });
 
   app.get("/count", (_req, res) => {
@@ -49,13 +57,13 @@ export function createApp(seed: Workshop[]) {
   app.get("/summary", (_req, res) => {
     res.json(workshopSummary(workshops));
   });
-  app.get("/workshops/:id", (req, res) => {
+  app.get("/workshops/:id", async (req, res) => {
     const id = parseWorkshopId(req.params.id);
     if (id === null) {
       res.status(400).json({ error: "Invalid workshop ID" });
       return;
     }
-    const workshop = workshops.get(id);
+    const workshop = await findWorkshop(id);
     if (workshop === undefined) {
       res.status(404).json({ error: "Workshop not found" });
       return;
@@ -64,13 +72,18 @@ export function createApp(seed: Workshop[]) {
   });
 
   // Retained from Lecture 36: does not save anything.
-  app.post("/workshops/preview", (req, res) => {
-    if (!isRecord(req.body)) {
-      res.status(400).json({ error: "Invalid preview body" });
+  app.post("/workshops/preview", async (req, res) => {
+    // validate the input
+    const parsed = validateWorkshopInput(req.body);
+    // parsed data is NOT OK -> return 400
+    if (!parsed.ok) {
+      res.status(400).json({ error: "Invalid workshop", details: parsed.details });
       return;
     }
-    const { title, seats } = req.body;
-    res.status(200).json({ title, seats, saved: false });
+    // pool.execute(INSERT INTO...)
+    const [result] = await pool.execute<ResultSetHeader>("INSERT INTO workshops (title, seats) VALUES (?, ?)", [parsed.value.title, parsed.value.seats]);
+    // get the result -> return
+    res.status(201).json({ _id: result.insertId, ...parsed.value });
   });
 
   // Retained from Lecture 36: observes the same live workshop Map.
@@ -94,15 +107,18 @@ export function createApp(seed: Workshop[]) {
     res.json({ fitsGroup: groupSize <= workshop.seats, reserved: false });
   });
 
-  app.post("/workshops", (req, res) => {
-    const result = validateWorkshopInput(req.body);
-    if (!result.ok) {
-      res.status(400).json({ error: "Invalid workshop", details: result.details });
+  app.post("/workshops", async (req, res) => {
+    // validate the input
+    const parsed = validateWorkshopInput(req.body);
+    // parsed data is NOT OK -> return 400
+    if (!parsed.ok) {
+      res.status(400).json({ error: "Invalid workshop", details: parsed.details });
       return;
     }
-    const created: Workshop = { _id: nextId++, ...result.value };
-    workshops.set(created._id, created);
-    res.location(`/workshops/${created._id}`).status(201).json(created);
+    // pool.execute(INSERT INTO...)
+    const [result] = await pool.execute<ResultSetHeader>("INSERT INTO workshops (title, seats) VALUES (?, ?)", [parsed.value.title, parsed.value.seats]);
+    // get the result -> return
+    res.status(201).json({ _id: result.insertId, ...parsed.value });
   });
 
   app.put("/workshops/:id", (req, res) => {
