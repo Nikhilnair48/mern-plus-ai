@@ -1,0 +1,30 @@
+[
+    {
+        "_id": 101,
+        "title": "Intro to Pottery",
+        "seats": 12,
+        "fee": 1200,
+        "instructorId": 1
+    },
+    {
+        "_id": 102,
+        "title": "Street Photography Walk",
+        "seats": 15,
+        "fee": 1500,
+        "instructorId": 2
+    },
+    {
+        "_id": 103,
+        "title": "Sourdough Basics",
+        "seats": 12,
+        "fee": 1800,
+        "instructorId": 3
+    },
+    {
+        "_id": 104,
+        "title": "Watercolour Landscapes",
+        "seats": 20,
+        "fee": 1200,
+        "instructorId": 1
+    }
+]
